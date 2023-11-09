@@ -1,0 +1,42 @@
+{
+  "dsName": "Create Product",
+  "fieldList": [
+    {
+      "fieldName": "name",
+      "dataType": "text",
+      "derived": false,
+      "groupCode": "",
+      "domainList": [
+        "dummy product"
+      ]
+    },
+    {
+      "fieldName": "description",
+      "dataType": "text",
+      "derived": false,
+      "groupCode": "",
+      "domainList": [
+        "dummy product description"
+      ]
+    },
+    {
+      "fieldName": "price",
+      "dataType": "intNum",
+      "derived": false,
+      "groupCode": "",
+      "domainList": [
+        "120000"
+      ]
+    }
+  ],
+  "overallStrength": "pairWise",
+  "dataRows": [
+    {
+      "selected": true,
+      "$$hashKey": "object:50",
+      "name": "dummy product",
+      "description": "dummy product description",
+      "price": "120000"
+    }
+  ]
+}

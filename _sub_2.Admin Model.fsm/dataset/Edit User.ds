@@ -1,0 +1,22 @@
+{
+  "dsName": "Edit User",
+  "fieldList": [
+    {
+      "fieldName": "name",
+      "dataType": "text",
+      "derived": false,
+      "groupCode": "",
+      "domainList": [
+        "a"
+      ]
+    }
+  ],
+  "overallStrength": "pairWise",
+  "dataRows": [
+    {
+      "selected": true,
+      "$$hashKey": "object:48",
+      "name": "a"
+    }
+  ]
+}

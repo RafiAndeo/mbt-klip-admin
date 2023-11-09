@@ -1,0 +1,42 @@
+{
+  "dsName": "Edit Product",
+  "fieldList": [
+    {
+      "fieldName": "name",
+      "dataType": "text",
+      "derived": false,
+      "groupCode": "",
+      "domainList": [
+        "a"
+      ]
+    },
+    {
+      "fieldName": "description",
+      "dataType": "text",
+      "derived": false,
+      "groupCode": "",
+      "domainList": [
+        "a"
+      ]
+    },
+    {
+      "fieldName": "price",
+      "dataType": "intNum",
+      "derived": false,
+      "groupCode": "",
+      "domainList": [
+        "1"
+      ]
+    }
+  ],
+  "overallStrength": "pairWise",
+  "dataRows": [
+    {
+      "selected": true,
+      "$$hashKey": "object:78",
+      "name": "a",
+      "description": "a",
+      "price": "1"
+    }
+  ]
+}
