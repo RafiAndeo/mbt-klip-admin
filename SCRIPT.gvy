@@ -9,10 +9,9 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.interactions.Actions;
-import java.time.Duration
 import org.openqa.selenium.support.ui.Select;
+import java.time.Duration
 
 @TRIGGER('MBT_START')
 def 'MBT_START' () {
@@ -20,9 +19,6 @@ def 'MBT_START' () {
 		$SELENIUM.setBrowser($SYS.getExecDir().getExecSetting().getOption('ideBrowser'));
 	}
 	$VAR.HasLogin = false;
-	$VAR.HasAddProduct = false;
-	$VAR.HasAddUser = false;
-	$VAR.TotalProduct = 0;
 	$VAR.HasDeleteProduct = false;
 	$VAR.HasDeleteUser = false;
 }
@@ -53,8 +49,9 @@ def 'v_Home_Page: e_Access_Login_Page'() {
 		WebElement End_Element_2 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='http://127.0.0.1:8000/logout' and contains(@class, 'block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out')]")));
 		End_Element_2.click();
 		$VAR.HasLogin = false;
-		$VAR.HasAddProduct = false;
-		$VAR.HasAddUser = false;
+
+		WebElement Login_Element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='http://127.0.0.1:8000/login' and contains(@class, 'text-black md:text-white hover:underline')]")));
+		Login_Element.click();
 	}
 }
 
@@ -110,8 +107,6 @@ def 'v_Main_Dashboard_Page: e_End'() {
 	WebElement End_Element_2 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='http://127.0.0.1:8000/logout' and contains(@class, 'block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out')]")));
 	End_Element_2.click();
 	$VAR.HasLogin = false;
-	$VAR.HasAddProduct = false;
-	$VAR.HasAddUser = false;
 }
 
 
@@ -140,42 +135,32 @@ def 'v_Create_Product_Page: e_End'() {
 	WebElement End_Element_2 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='http://127.0.0.1:8000/logout' and contains(@class, 'block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out')]")));
 	End_Element_2.click();
 	$VAR.HasLogin = false;
-	$VAR.HasAddProduct = false;
-	$VAR.HasAddUser = false;
 }
 
 
 @TRIGGER('U070b6580')
 def 'v_Create_Product_Page: e_Return_Dashboard_Product_Page'() {
-	if ($VAR.TotalProduct == 0){
-		name = $SYS.getData('name');
-		description = $SYS.getData('description');
-		price = $SYS.getData('price');
+	name = $SYS.getData('name');
+	description = $SYS.getData('description');
+	price = $SYS.getData('price');
 
-		$SELENIUM.getWebDriver().findElement(By.xpath("//input[@class='appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500' and contains(@id, 'grid-last-name') and contains(@type, 'text')]")).sendKeys(name);
+	$SELENIUM.getWebDriver().findElement(By.xpath("//input[@class='appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500' and contains(@id, 'grid-last-name') and contains(@type, 'text')]")).sendKeys(name);
 
-		JavascriptExecutor js = (JavascriptExecutor) $SELENIUM.getWebDriver();
-		Actions actions = new Actions($SELENIUM.getWebDriver());
-		js.executeScript("arguments[0].scrollIntoView({block: 'center', inline: 'center'});", $SELENIUM.getWebDriver().findElement(By.xpath("//iframe[@class='cke_wysiwyg_frame cke_reset']")));
+	JavascriptExecutor js = (JavascriptExecutor) $SELENIUM.getWebDriver();
+	Actions actions = new Actions($SELENIUM.getWebDriver());
+	js.executeScript("arguments[0].scrollIntoView({block: 'center', inline: 'center'});", $SELENIUM.getWebDriver().findElement(By.xpath("//iframe[@class='cke_wysiwyg_frame cke_reset']")));
 
-		actions.pause(Duration.ofSeconds(1)).perform();
+	actions.pause(Duration.ofSeconds(1)).perform();
 
-		WebElement textareaElement = $SELENIUM.getWebDriver().findElement(By.xpath("//iframe[@class='cke_wysiwyg_frame cke_reset']"));
-		textareaElement.click();
+	WebElement textareaElement = $SELENIUM.getWebDriver().findElement(By.xpath("//iframe[@class='cke_wysiwyg_frame cke_reset']"));
+	textareaElement.click();
 
-		textareaElement.sendKeys(description);
-		textareaElement.click();
-		textareaElement.sendKeys(description);
+	textareaElement.sendKeys(description);
+	textareaElement.click();
+	textareaElement.sendKeys(description);
 
-		$SELENIUM.getWebDriver().findElement(By.xpath("//input[@class='appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500' and contains(@id, 'grid-last-name') and contains(@type, 'number')]")).sendKeys(price);
-		$SELENIUM.getWebDriver().findElement(By.xpath("//button[@class=' shadow-lg bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded']")).click();
-		$VAR.HasAddProduct = true;
-		$VAR.TotalProduct += 1;
-	}else {
-		WebDriverWait wait = new WebDriverWait($SELENIUM.getWebDriver(), 5);
-		WebElement Dashboard_Product_Element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='http://127.0.0.1:8000/dashboard/product' and contains(@class, 'inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out')]")));
-		Dashboard_Product_Element.click();
-	}
+	$SELENIUM.getWebDriver().findElement(By.xpath("//input[@class='appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500' and contains(@id, 'grid-last-name') and contains(@type, 'number')]")).sendKeys(price);
+	$SELENIUM.getWebDriver().findElement(By.xpath("//button[@class=' shadow-lg bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded']")).click();
 }
 
 
@@ -214,7 +199,7 @@ def 'v_Dashboard_Product_Page: e_Access_Dashboard_User_Page'() {
 @TRIGGER('U14df5506')
 def 'v_Dashboard_Product_Page: e_Access_Edit_Product_Page'() {
 	WebDriverWait wait = new WebDriverWait($SELENIUM.getWebDriver(), 5);
-	WebElement Edit_Product_Element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='http://127.0.0.1:8000/dashboard/product/10/edit' and contains(@class, 'bg-green-500 mr-2 text-white rounded-md px-2 py-1 m-2')]")));
+	WebElement Edit_Product_Element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='http://127.0.0.1:8000/dashboard/product/2/edit' and contains(@class, 'bg-green-500 mr-2 text-white rounded-md px-2 py-1 m-2')]")));
 	Edit_Product_Element.click();
 }
 
@@ -222,7 +207,7 @@ def 'v_Dashboard_Product_Page: e_Access_Edit_Product_Page'() {
 @TRIGGER('U1388b5b6')
 def 'v_Dashboard_Product_Page: e_Access_Gallery_Product_Page'() {
 	WebDriverWait wait = new WebDriverWait($SELENIUM.getWebDriver(), 5);
-	WebElement Gallery_Product_Element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='http://127.0.0.1:8000/dashboard/product/10/gallery' and contains(@class, 'bg-black mr-2 text-white rounded-md px-2 py-1 m-2')]")));
+	WebElement Gallery_Product_Element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='http://127.0.0.1:8000/dashboard/product/2/gallery' and contains(@class, 'bg-black mr-2 text-white rounded-md px-2 py-1 m-2')]")));
 	Gallery_Product_Element.click();
 }
 
@@ -236,8 +221,6 @@ def 'v_Dashboard_Product_Page: e_End'() {
 	WebElement End_Element_2 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='http://127.0.0.1:8000/logout' and contains(@class, 'block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out')]")));
 	End_Element_2.click();
 	$VAR.HasLogin = false;
-	$VAR.HasAddProduct = false;
-	$VAR.HasAddUser = false;
 }
 
 
@@ -305,8 +288,6 @@ def 'v_Dashboard_Transaction_Page: e_End'() {
 	WebElement End_Element_2 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='http://127.0.0.1:8000/logout' and contains(@class, 'block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out')]")));
 	End_Element_2.click();
 	$VAR.HasLogin = false;
-	$VAR.HasAddProduct = false;
-	$VAR.HasAddUser = false;
 }
 
 
@@ -337,7 +318,7 @@ def 'v_Dashboard_User_Page: e_Access_Dashboard_Transaction_Page'() {
 @TRIGGER('U54e2df33')
 def 'v_Dashboard_User_Page: e_Access_Edit_User_Page'() {
 	WebDriverWait wait = new WebDriverWait($SELENIUM.getWebDriver(), 5);
-	WebElement Edit_User_Element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='http://127.0.0.1:8000/dashboard/user/10/edit' and contains(@class, 'bg-black mr-2 text-white rounded-md px-2 py-1 m-2')]")));
+	WebElement Edit_User_Element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='http://127.0.0.1:8000/dashboard/user/2/edit' and contains(@class, 'bg-black mr-2 text-white rounded-md px-2 py-1 m-2')]")));
 	Edit_User_Element.click();
 }
 
@@ -351,8 +332,6 @@ def 'v_Dashboard_User_Page: e_End'() {
 	WebElement End_Element_2 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='http://127.0.0.1:8000/logout' and contains(@class, 'block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out')]")));
 	End_Element_2.click();
 	$VAR.HasLogin = false;
-	$VAR.HasAddProduct = false;
-	$VAR.HasAddUser = false;
 }
 
 
@@ -404,8 +383,6 @@ def 'v_Edit_Product_Page: e_End'() {
 	WebElement End_Element_2 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='http://127.0.0.1:8000/logout' and contains(@class, 'block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out')]")));
 	End_Element_2.click();
 	$VAR.HasLogin = false;
-	$VAR.HasAddProduct = false;
-	$VAR.HasAddUser = false;
 }
 
 
@@ -468,8 +445,6 @@ def 'v_Edit_Transaction_Page: e_End'() {
 	WebElement End_Element_2 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='http://127.0.0.1:8000/logout' and contains(@class, 'block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out')]")));
 	End_Element_2.click();
 	$VAR.HasLogin = false;
-	$VAR.HasAddProduct = false;
-	$VAR.HasAddUser = false;
 }
 
 
@@ -514,8 +489,6 @@ def 'v_Edit_User_Page: e_End'() {
 	WebElement End_Element_2 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='http://127.0.0.1:8000/logout' and contains(@class, 'block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out')]")));
 	End_Element_2.click();
 	$VAR.HasLogin = false;
-	$VAR.HasAddProduct = false;
-	$VAR.HasAddUser = false;
 }
 
 
@@ -555,7 +528,7 @@ def 'v_Gallery_Product_Page: e_Access_Dashboard_User_Page'() {
 @TRIGGER('U5411c103')
 def 'v_Gallery_Product_Page: e_Access_Upload_Photos_Page'() {
 	WebDriverWait wait = new WebDriverWait($SELENIUM.getWebDriver(), 5);
-	WebElement Upload_Photos_Element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='http://127.0.0.1:8000/dashboard/product/10/gallery/create' and contains(@class, 'bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded shadow-lg')]")));
+	WebElement Upload_Photos_Element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='http://127.0.0.1:8000/dashboard/product/2/gallery/create' and contains(@class, 'bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded shadow-lg')]")));
 	Upload_Photos_Element.click();
 }
 
@@ -569,8 +542,6 @@ def 'v_Gallery_Product_Page: e_End'() {
 	WebElement End_Element_2 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='http://127.0.0.1:8000/logout' and contains(@class, 'block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out')]")));
 	End_Element_2.click();
 	$VAR.HasLogin = false;
-	$VAR.HasAddProduct = false;
-	$VAR.HasAddUser = false;
 }
 
 
@@ -647,8 +618,6 @@ def 'v_Show_Transaction_Page: e_End'() {
 	WebElement End_Element_2 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='http://127.0.0.1:8000/logout' and contains(@class, 'block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out')]")));
 	End_Element_2.click();
 	$VAR.HasLogin = false;
-	$VAR.HasAddProduct = false;
-	$VAR.HasAddUser = false;
 }
 
 
@@ -701,8 +670,6 @@ def 'v_Upload_Photos_Page: e_End'() {
 	WebElement End_Element_2 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='http://127.0.0.1:8000/logout' and contains(@class, 'block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out')]")));
 	End_Element_2.click();
 	$VAR.HasLogin = false;
-	$VAR.HasAddProduct = false;
-	$VAR.HasAddUser = false;
 }
 
 

@@ -7,7 +7,7 @@
       "derived": false,
       "groupCode": "",
       "domainList": [
-        "deo@gmail.com"
+        "rafi@gmail.com"
       ]
     },
     {
@@ -25,7 +25,7 @@
     {
       "selected": true,
       "$$hashKey": "object:24",
-      "email": "deo@gmail.com",
+      "email": "rafi@gmail.com",
       "password": "12345678"
     }
   ]

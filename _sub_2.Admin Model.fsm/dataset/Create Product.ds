@@ -7,7 +7,15 @@
       "derived": false,
       "groupCode": "",
       "domainList": [
-        "dummy product"
+        "test1",
+        "test2",
+        "test3",
+        "test4",
+        "test5",
+        "test6",
+        "test7",
+        "test8",
+        "test9"
       ]
     },
     {
@@ -16,7 +24,15 @@
       "derived": false,
       "groupCode": "",
       "domainList": [
-        "dummy product description"
+        "test1",
+        "test2",
+        "test3",
+        "test4",
+        "test5",
+        "test6",
+        "test7",
+        "test8",
+        "test9"
       ]
     },
     {
@@ -25,18 +41,82 @@
       "derived": false,
       "groupCode": "",
       "domainList": [
-        "120000"
+        "100000",
+        "100000",
+        "100000",
+        "100000",
+        "100000",
+        "100000",
+        "100000",
+        "100000",
+        "100000"
       ]
     }
   ],
   "overallStrength": "pairWise",
   "dataRows": [
     {
+      "selected": false,
+      "$$hashKey": "object:158",
+      "name": "test1",
+      "description": "test1",
+      "price": "100000"
+    },
+    {
+      "selected": false,
+      "$$hashKey": "object:163",
+      "name": "test2",
+      "description": "test2",
+      "price": "100000"
+    },
+    {
+      "selected": false,
+      "$$hashKey": "object:168",
+      "name": "test3",
+      "description": "test3",
+      "price": "100000"
+    },
+    {
+      "selected": false,
+      "$$hashKey": "object:173",
+      "name": "test4",
+      "description": "test4",
+      "price": "100000"
+    },
+    {
+      "selected": false,
+      "$$hashKey": "object:178",
+      "name": "test5",
+      "description": "test5",
+      "price": "100000"
+    },
+    {
+      "selected": false,
+      "$$hashKey": "object:183",
+      "name": "test6",
+      "description": "test6",
+      "price": "100000"
+    },
+    {
+      "selected": false,
+      "$$hashKey": "object:188",
+      "name": "test7",
+      "description": "test7",
+      "price": "100000"
+    },
+    {
+      "selected": false,
+      "$$hashKey": "object:193",
+      "name": "test8",
+      "description": "test8",
+      "price": "100000"
+    },
+    {
       "selected": true,
-      "$$hashKey": "object:50",
-      "name": "dummy product",
-      "description": "dummy product description",
-      "price": "120000"
+      "$$hashKey": "object:198",
+      "name": "test9",
+      "description": "test9",
+      "price": "100000"
     }
   ]
 }
