@@ -65,6 +65,12 @@ def 'v_Login_Page: e_Access_Main_Dashboard_Page'() {
 	$SELENIUM.getWebDriver().findElement(By.id('password')).sendKeys(password);
 	$SELENIUM.getWebDriver().findElement(By.xpath("//button[@class='inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 ml-3']")).click();
 	$VAR.HasLogin = true;
+
+	if ($SELENIUM.assist().containsText('Dashboard')) {
+		$SYS.addReqPassed('REQ_LOGIN', 'Successfully Perform User Login')
+	}else {
+		$SYS.addReqFailed('REQ_LOGIN', 'Failed Perform User Login')
+	}
 }
 
 
@@ -94,6 +100,12 @@ def 'v_Home_Page: e_Access_Main_Dashboard_Page'() {
 		$SELENIUM.getWebDriver().findElement(By.id('password')).sendKeys(password);
 		$SELENIUM.getWebDriver().findElement(By.xpath("//button[@class='inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 ml-3']")).click();
 		$VAR.HasLogin = true;
+
+		if ($SELENIUM.assist().containsText('Dashboard')) {
+			$SYS.addReqPassed('REQ_LOGIN', 'Successfully Perform User Login')
+		}else {
+			$SYS.addReqFailed('REQ_LOGIN', 'Failed Perform User Login')
+		}
 	}
 }
 
@@ -161,6 +173,8 @@ def 'v_Create_Product_Page: e_Return_Dashboard_Product_Page'() {
 
 	$SELENIUM.getWebDriver().findElement(By.xpath("//input[@class='appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500' and contains(@id, 'grid-last-name') and contains(@type, 'number')]")).sendKeys(price);
 	$SELENIUM.getWebDriver().findElement(By.xpath("//button[@class=' shadow-lg bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded']")).click();
+
+	$SYS.addReqPassed('REQ_CREATE_PRODUCT', 'Successfully Create Product')
 }
 
 
@@ -231,6 +245,12 @@ def 'v_Dashboard_Product_Page: e_Return_Dashboard_Product_Page'() {
 		WebElement Dashboard_Product_Element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@class='bg-red-600 text-white rounded-md px-2 py-1 m-2 transition duration-500 ease select-none hover:bg-red-600 focus:outline-none focus:shadow-outline']")));
 		Dashboard_Product_Element.click();
 		$VAR.HasDeleteProduct = true;
+
+		if ($SELENIUM.assist().containsText('Product')) {
+			$SYS.addReqPassed('REQ_DELETE_PRODUCT', 'Successfully Delete Product')
+		}else {
+			$SYS.addReqFailed('REQ_DELETE_PRODUCT', 'Failed Delete Product')
+		}
 	}else {
 		WebDriverWait wait = new WebDriverWait($SELENIUM.getWebDriver(), 5);
 		WebElement Dashboard_Product_Element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='http://127.0.0.1:8000/dashboard/product' and contains(@class, 'inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out')]")));
@@ -276,6 +296,12 @@ def 'v_Dashboard_Transaction_Page: e_Access_Show_Transaction_Page'() {
 	WebDriverWait wait = new WebDriverWait($SELENIUM.getWebDriver(), 5);
 	WebElement Show_Transaction_Element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='http://127.0.0.1:8000/dashboard/transaction/1' and contains(@class, 'bg-black text-white rounded-md px-2 py-1 m-2')]")));
 	Show_Transaction_Element.click();
+
+	if ($SELENIUM.assist().containsText('Transaction Details')) {
+		$SYS.addReqPassed('REQ_SHOW_TRANSACTION', 'Successfully Show Transaction')
+	}else {
+		$SYS.addReqFailed('REQ_SHOW_TRANSACTION', 'Failed Show Transaction')
+	}
 }
 
 
@@ -342,6 +368,12 @@ def 'v_Dashboard_User_Page: e_Return_Dashboard_User_Page'() {
 		WebElement Dashboard_User_Element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@class='bg-red-600 text-white rounded-md px-2 py-1 m-2 transition duration-500 ease select-none hover:bg-red-600 focus:outline-none focus:shadow-outline']")));
 		Dashboard_User_Element.click();
 		$VAR.HasDeleteUser = true;
+
+		if ($SELENIUM.assist().containsText('User')) {
+			$SYS.addReqPassed('REQ_DELETE_USER', 'Successfully Delete User')
+		}else {
+			$SYS.addReqFailed('REQ_DELETE_USER', 'Failed Delete User')
+		}
 	}else {
 		WebDriverWait wait = new WebDriverWait($SELENIUM.getWebDriver(), 5);
 		WebElement Dashboard_User_Element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='http://127.0.0.1:8000/dashboard/user' and contains(@class, 'inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out')]")));
@@ -409,6 +441,8 @@ def 'v_Edit_Product_Page: e_Return_Dashboard_Product_Page'() {
 
 	$SELENIUM.getWebDriver().findElement(By.xpath("//input[@class='appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500' and contains(@id, 'grid-last-name') and contains(@type, 'number')]")).sendKeys(price);
 	$SELENIUM.getWebDriver().findElement(By.xpath("//button[@class='bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded']")).click();
+
+	$SYS.addReqPassed('REQ_EDIT_PRODUCT', 'Successfully Edit Product')
 }
 
 
@@ -453,6 +487,8 @@ def 'v_Edit_Transaction_Page: e_Return_Dashboard_Transaction_Page'() {
 	Select dropdown = new Select($SELENIUM.getWebDriver().findElement(By.xpath("//select[@class='appearance-none block w-full bg-slate-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500']")));
 	dropdown.selectByValue("SUCCESS");
 	$SELENIUM.getWebDriver().findElement(By.xpath("//button[@class='bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded']")).click();
+
+	$SYS.addReqPassed('REQ_EDIT_TRANSACTION', 'Successfully Edit User Transaction Status')
 }
 
 
@@ -498,6 +534,12 @@ def 'v_Edit_User_Page: e_Return_Dashboard_User_Page'() {
 
 	$SELENIUM.getWebDriver().findElement(By.xpath("//input[@class='appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500' and contains(@id, 'grid-last-name') and contains(@type, 'text') and contains(@name, 'name')]")).sendKeys(name);
 	$SELENIUM.getWebDriver().findElement(By.xpath("//button[@class='bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded']")).click();
+
+	if ($SELENIUM.assist().containsText('Rafia')) {
+		$SYS.addReqPassed('REQ_EDIT_USER', 'Successfully Edit User')
+	}else {
+		$SYS.addReqFailed('REQ_EDIT_USER', 'Failed Edit User')
+	}
 }
 
 
@@ -558,6 +600,12 @@ def 'v_Gallery_Product_Page: e_Return_Gallery_Product_Page'() {
 	WebDriverWait wait = new WebDriverWait($SELENIUM.getWebDriver(), 5);
 	WebElement Gallery_Product_Element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@class='bg-red-600 text-white rounded-md px-2 py-1 m-2 transition duration-500 ease select-none hover:bg-red-600 focus:outline-none focus:shadow-outline']")));
 	Gallery_Product_Element.click();
+
+	if ($SELENIUM.assist().containsText('Gallery')) {
+		$SYS.addReqPassed('REQ_DELETE_GALLERY_PRODUCT', 'Successfully Delete Product Picture')
+	}else {
+		$SYS.addReqFailed('REQ_DELETE_GALLERY_PRODUCT', 'Failed Delete Product Picture')
+	}
 }
 
 
@@ -677,6 +725,12 @@ def 'v_Upload_Photos_Page: e_End'() {
 def 'v_Upload_Photos_Page: e_Return_Gallery_Product_Page'() {
 	$SELENIUM.getWebDriver().findElement(By.xpath("//input[@class='appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500']")).sendKeys("C:\\Users\\LENOVO\\Pictures\\aurora-borealis-9h.jpg");
 	$SELENIUM.getWebDriver().findElement(By.xpath("//button[@class=' shadow-lg bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded']")).click();
+
+	if ($SELENIUM.assist().containsText('Products')) {
+		$SYS.addReqPassed('REQ_CREATE_GALLERY_PRODUCT', 'Successfully Create Product Picture')
+	}else {
+		$SYS.addReqFailed('REQ_CREATE_GALLERY_PRODUCT', 'Failed Create Product Picture')
+	}
 }
 
 

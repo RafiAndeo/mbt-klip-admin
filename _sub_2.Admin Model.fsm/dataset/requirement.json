@@ -1,0 +1,65 @@
+{
+  "updateDT": "Nov 13, 2023 3:11:01 PM",
+  "reqList": [
+    {
+      "name": "REQ_LOGIN",
+      "desc": "Admin Login",
+      "priority": "medium",
+      "reqID": ""
+    },
+    {
+      "name": "REQ_CREATE_PRODUCT",
+      "desc": "Admin Create Product",
+      "priority": "high",
+      "reqID": ""
+    },
+    {
+      "name": "REQ_EDIT_PRODUCT",
+      "desc": "Admin Edit Product",
+      "priority": "high",
+      "reqID": ""
+    },
+    {
+      "name": "REQ_DELETE_PRODUCT",
+      "desc": "Admin Delete Product",
+      "priority": "high",
+      "reqID": ""
+    },
+    {
+      "name": "REQ_EDIT_TRANSACTION",
+      "desc": "Admin Edit Transaction Status",
+      "priority": "high",
+      "reqID": ""
+    },
+    {
+      "name": "REQ_SHOW_TRANSACTION",
+      "desc": "Admin Show Transaction",
+      "priority": "medium",
+      "reqID": ""
+    },
+    {
+      "name": "REQ_EDIT_USER",
+      "desc": "Admin Edit User",
+      "priority": "low",
+      "reqID": ""
+    },
+    {
+      "name": "REQ_DELETE_USER",
+      "desc": "Admin Delete User",
+      "priority": "medium",
+      "reqID": ""
+    },
+    {
+      "name": "REQ_CREATE_GALLERY_PRODUCT",
+      "desc": "Admin Create Product Picture",
+      "priority": "high",
+      "reqID": ""
+    },
+    {
+      "name": "REQ_DELETE_GALLERY_PRODUCT",
+      "desc": "Admin Delete Product Picture",
+      "priority": "medium",
+      "reqID": ""
+    }
+  ]
+}
